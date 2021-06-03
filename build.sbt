@@ -33,7 +33,7 @@ lazy val publishSettings = commonSettings ++ Seq(
 
 lazy val root = (project in file("."))
   .settings(noPublishSettings)
-  .settings(name := "Trace4Cats Opentelemetry")
+  .settings(name := "Trace4Cats Zipkin")
   .aggregate(`zipkin-http-exporter`)
 
 lazy val `zipkin-http-exporter` =
