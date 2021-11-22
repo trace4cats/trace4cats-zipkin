@@ -35,7 +35,6 @@ lazy val `zipkin-http-exporter` =
       name := "trace4cats-zipkin-http-exporter",
       libraryDependencies ++= Seq(
         Dependencies.circeGeneric,
-        Dependencies.http4sBlazeClient,
         Dependencies.trace4catsModel,
         Dependencies.trace4catsKernel,
         Dependencies.trace4catsExporterCommon,
