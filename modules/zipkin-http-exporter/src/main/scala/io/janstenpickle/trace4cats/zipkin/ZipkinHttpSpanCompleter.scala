@@ -32,8 +32,6 @@ object ZipkinHttpSpanCompleter {
     config: CompleterConfig
   ): Resource[F, SpanCompleter[F]] =
     Resource.eval(Slf4jLogger.create[F]).flatMap { implicit logger: Logger[F] =>
-      Resource
-        .pure(ZipkinHttpSpanExporter[F, Chunk](client, uri))
-        .flatMap(QueuedSpanCompleter[F](process, _, config))
+      QueuedSpanCompleter[F](process, ZipkinHttpSpanExporter[F, Chunk](client, uri), config)
     }
 }
