@@ -8,7 +8,7 @@ object Dependencies {
 
     val trace4cats = "0.12.0"
     val trace4catsExporterHttp = "0.12.0+41-8ce63144"
-    val trace4catsJaegerIntegrationTest = "0.12.0"
+    val trace4catsJaegerIntegrationTest = "0.12.0+42-5e4d5380"
 
     val circe = "0.14.1"
 
@@ -23,7 +23,7 @@ object Dependencies {
   lazy val trace4catsJaegerIntegrationTest =
     "io.janstenpickle" %% "trace4cats-jaeger-integration-test" % Versions.trace4catsJaegerIntegrationTest
 
-  lazy val circeGeneric = "io.circe"        %% "circe-generic"       % Versions.circe
+  lazy val circeGeneric = "io.circe" %% "circe-generic" % Versions.circe
 
   lazy val kindProjector = ("org.typelevel" % "kind-projector"     % Versions.kindProjector).cross(CrossVersion.full)
   lazy val betterMonadicFor = "com.olegpy" %% "better-monadic-for" % Versions.betterMonadicFor

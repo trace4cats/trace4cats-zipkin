@@ -8,7 +8,6 @@ import io.janstenpickle.trace4cats.test.jaeger.BaseJaegerSpec
 import org.http4s.blaze.client.BlazeClientBuilder
 
 import java.time.Instant
-import scala.concurrent.ExecutionContext.global
 import scala.concurrent.duration._
 
 class ZipkinHttpSpanCompleterSpec extends BaseJaegerSpec {
@@ -23,7 +22,7 @@ class ZipkinHttpSpanCompleterSpec extends BaseJaegerSpec {
       }
     )
     val batch = Batch(Chunk(updatedSpan.build(process)))
-    val completer = BlazeClientBuilder[IO](global).resource.flatMap { client =>
+    val completer = BlazeClientBuilder[IO].resource.flatMap { client =>
       ZipkinHttpSpanCompleter(client, process, "localhost", 9411, CompleterConfig(batchTimeout = 50.millis))
     }
 

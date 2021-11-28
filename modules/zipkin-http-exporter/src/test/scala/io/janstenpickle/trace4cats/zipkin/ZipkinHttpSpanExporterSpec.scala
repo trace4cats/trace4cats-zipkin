@@ -8,7 +8,6 @@ import io.janstenpickle.trace4cats.test.jaeger.BaseJaegerSpec
 import org.http4s.blaze.client.BlazeClientBuilder
 
 import java.time.Instant
-import scala.concurrent.ExecutionContext.global
 
 class ZipkinHttpSpanExporterSpec extends BaseJaegerSpec {
   it should "Send a batch of spans to Zipkin" in forAll { (batch: Batch[Chunk], process: TraceProcess) =>
@@ -26,7 +25,7 @@ class ZipkinHttpSpanExporterSpec extends BaseJaegerSpec {
           )
         )
       )
-    val exporter = BlazeClientBuilder[IO](global).resource.flatMap { client =>
+    val exporter = BlazeClientBuilder[IO].resource.flatMap { client =>
       Resource.eval(ZipkinHttpSpanExporter[IO, Chunk](client, "localhost", 9411))
     }
 
