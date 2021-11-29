@@ -14,11 +14,10 @@ object ZipkinHttpSpanExporter {
   def apply[F[_]: Async, G[_]: Foldable](
     client: Client[F],
     host: String = "localhost",
-    port: Int = 9411
+    port: Int = 9411,
+    protocol: String = "http"
   ): F[SpanExporter[F, G]] =
-    Uri.fromString(s"http://$host:$port/api/v2/spans").liftTo[F].map { uri =>
-      HttpSpanExporter[F, G, String](client, uri, ZipkinSpan.toJsonString[G](_))
-    }
+    Uri.fromString(s"$protocol://$host:$port/api/v2/spans").liftTo[F].map(uri => apply(client, uri))
 
   def apply[F[_]: Async, G[_]: Foldable](client: Client[F], uri: Uri): SpanExporter[F, G] =
     HttpSpanExporter[F, G, String](client, uri, ZipkinSpan.toJsonString[G](_))

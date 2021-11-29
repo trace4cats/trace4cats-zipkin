@@ -17,11 +17,12 @@ object ZipkinHttpSpanCompleter {
     process: TraceProcess,
     host: String = "localhost",
     port: Int = 9411,
-    config: CompleterConfig = CompleterConfig()
+    config: CompleterConfig = CompleterConfig(),
+    protocol: String = "http"
   ): Resource[F, SpanCompleter[F]] =
     Resource.eval(Slf4jLogger.create[F]).flatMap { implicit logger: Logger[F] =>
       Resource
-        .eval(ZipkinHttpSpanExporter[F, Chunk](client, host, port))
+        .eval(ZipkinHttpSpanExporter[F, Chunk](client, host, port, protocol))
         .flatMap(QueuedSpanCompleter[F](process, _, config))
     }
 
