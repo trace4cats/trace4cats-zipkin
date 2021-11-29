@@ -1,10 +1,11 @@
 package io.janstenpickle.trace4cats.zipkin
 
-import cats.effect.IO
+import cats.effect.{IO, Resource}
 import fs2.Chunk
 import io.janstenpickle.trace4cats.`export`.SemanticTags
 import io.janstenpickle.trace4cats.model.{Batch, TraceProcess}
 import io.janstenpickle.trace4cats.test.jaeger.BaseJaegerSpec
+import org.http4s.blaze.client.BlazeClientBuilder
 
 import java.time.Instant
 
@@ -24,9 +25,12 @@ class ZipkinHttpSpanExporterSpec extends BaseJaegerSpec {
           )
         )
       )
+    val exporter = BlazeClientBuilder[IO].resource.flatMap { client =>
+      Resource.eval(ZipkinHttpSpanExporter[IO, Chunk](client, "localhost", 9411))
+    }
 
     testExporter(
-      ZipkinHttpSpanExporter.blazeClient[IO, Chunk]("localhost", 9411),
+      exporter,
       updatedBatch,
       batchToJaegerResponse(
         updatedBatch,
