@@ -12,7 +12,7 @@
 Add it to your `build.sbt`:
 
 ```scala
-"io.janstenpickle" %% "trace4cats-zipkin-http-exporter" % "0.12.0"
+"io.janstenpickle" %% "trace4cats-zipkin-http-exporter" % "0.13.0"
 ```
 
 
