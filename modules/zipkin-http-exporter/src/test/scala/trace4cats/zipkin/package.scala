@@ -1,8 +1,7 @@
-package io.janstenpickle.trace4cats
+package trace4cats
 
 import cats.syntax.show._
-import io.janstenpickle.trace4cats.model.{AttributeValue, SpanKind, TraceProcess}
-import io.janstenpickle.trace4cats.test.jaeger.JaegerTag
+import trace4cats.test.jaeger.JaegerTag
 
 package object zipkin {
 

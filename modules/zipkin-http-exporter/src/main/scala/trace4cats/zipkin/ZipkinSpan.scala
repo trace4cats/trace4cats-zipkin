@@ -1,4 +1,6 @@
-package io.janstenpickle.trace4cats.zipkin
+package trace4cats.zipkin
+
+import java.util.concurrent.TimeUnit
 
 import cats.Foldable
 import cats.syntax.foldable._
@@ -6,12 +8,10 @@ import cats.syntax.show._
 import io.circe.Encoder
 import io.circe.generic.semiauto.deriveEncoder
 import io.circe.syntax._
-import io.janstenpickle.trace4cats.`export`.SemanticTags
-import io.janstenpickle.trace4cats.model.AttributeValue.{LongValue, StringValue}
-import io.janstenpickle.trace4cats.model._
-import io.janstenpickle.trace4cats.zipkin.ZipkinSpan.Endpoint
-
-import java.util.concurrent.TimeUnit
+import trace4cats.SemanticTags
+import trace4cats.model.AttributeValue.{LongValue, StringValue}
+import trace4cats.model._
+import trace4cats.zipkin.ZipkinSpan.Endpoint
 
 // implements https://zipkin.io/zipkin-api/zipkin2-api.yaml
 // does not support 'annotations' and 'debug' fields

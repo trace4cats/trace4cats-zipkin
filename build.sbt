@@ -40,9 +40,7 @@ lazy val `zipkin-http-exporter` =
       name := "trace4cats-zipkin-http-exporter",
       libraryDependencies ++= Seq(
         Dependencies.circeGeneric,
-        Dependencies.trace4catsModel,
-        Dependencies.trace4catsKernel,
-        Dependencies.trace4catsExporterCommon,
+        Dependencies.trace4catsCore,
         Dependencies.trace4catsExporterHttp
       ),
       libraryDependencies ++= Seq(Dependencies.trace4catsJaegerIntegrationTest).map(_ % Test),
