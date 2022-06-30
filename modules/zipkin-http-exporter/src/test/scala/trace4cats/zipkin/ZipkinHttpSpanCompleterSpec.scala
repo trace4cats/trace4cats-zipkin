@@ -1,13 +1,14 @@
-package io.janstenpickle.trace4cats.zipkin
+package trace4cats.zipkin
+
+import java.time.Instant
 
 import cats.effect.IO
 import fs2.Chunk
-import io.janstenpickle.trace4cats.`export`.{CompleterConfig, SemanticTags}
-import io.janstenpickle.trace4cats.model.{Batch, CompletedSpan, TraceProcess}
-import io.janstenpickle.trace4cats.test.jaeger.BaseJaegerSpec
 import org.http4s.blaze.client.BlazeClientBuilder
+import trace4cats.model.{Batch, CompletedSpan, TraceProcess}
+import trace4cats.test.jaeger.BaseJaegerSpec
+import trace4cats.{CompleterConfig, SemanticTags}
 
-import java.time.Instant
 import scala.concurrent.duration._
 
 class ZipkinHttpSpanCompleterSpec extends BaseJaegerSpec {
